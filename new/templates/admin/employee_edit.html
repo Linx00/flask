@@ -1,0 +1,90 @@
+{% extends 'admin/header.html' %}
+{%block content%}
+<script type="text/javascript">
+	changeTab('添加员工');
+</script>
+<div class="work-xcontent">
+	<div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">添加员工</h3>
+                </div>
+                <form role="form" method="post" enctype="multipart/form-data">
+                    <div class="box-body">
+						{% for msg in get_flashed_messages(category_filter=['ok'])%}
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> 操作成功</h4>
+                            {{ msg}}
+                        </div>
+                        {%endfor%}
+                        {%for msg in get_flashed_messages(category_filter=['err'])%}
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-ban"></i> 操作失败</h4>
+                            {{msg}}
+                        </div>
+                        {%endfor%}
+                        <div class="form-group">
+                            <label for="input_name">{{form.name.label}}</label>
+                            {{form.name(value=employee.name)}}>
+                            {% for err in form.name.errors%}
+                            <div class="col-md-12"></div>
+                            <font style="color:red">{{ err }}</font>
+                            {%endfor%}
+                        </div>
+                        <div class="form-group">
+                            <label for="input_sex">{{form.sex.label}}</label>
+                            {{form.sex(value=employee.sex)}}
+                            {% for err in form.sex.errors%}
+                            <div class="col-md-12"></div>
+                            <font style="color:red">{{ err }}</font>
+                            {%endfor%}
+                        </div>
+                        <div class="form-group">
+                            <label for="input_old">{{form.old.label}}</label>
+                            {{form.old(value=employee.old)}}
+                            {% for err in form.old.errors%}
+                            <div class="col-md-12"></div>
+                            <font style="color:red">{{ err }}</font>
+                            {%endfor%}
+                        </div>
+                        <div class="form-group">
+                            <label for="input_money">{{form.money.label}}</label>
+                            {{form.money(value=employee.money)}}
+                            {% for err in form.money.errors%}
+                            <div class="col-md-12"></div>
+                            <font style="color:red">{{ err }}</font>
+                            {%endfor%}
+                        </div>
+						<div class="form-group">
+                            <label for="input_tel">{{form.tel.label}}</label>
+                            {{form.tel(value=employee.tel)}}
+                            {% for err in form.tel.errors%}
+                            <div class="col-md-12"></div>
+                            <font style="color:red">{{ err }}</font>
+                            {%endfor%}
+                        </div>
+						<div class="form-group">
+                            <label for="input_id_card">{{form.id_card.label}}</label>
+                            {{form.id_card(value=employee.id_card)}}
+                            {% for err in form.id_card.errors%}
+                            <div class="col-md-12"></div>
+                            <font style="color:red">{{ err }}</font>
+                            {%endfor%}
+                        </div>
+					</div>
+                    <div class="box-footer">
+                        {{form.csrf_token}}
+                        {{form.submit}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'admin/footer.html' %}
+{%endblock%}

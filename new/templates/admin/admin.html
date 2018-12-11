@@ -1,0 +1,101 @@
+{% include 'admin/header.html' %}
+<script type="text/javascript">
+	changeTab('仪表盘');
+	$(function () {
+        $('#work-lock').on('click', 'button', function () {
+            if ($(this).hasClass('btn-success')) {
+                $.post('/work/lock/close');
+            } else {
+                $.post('/work/lock/open');
+            }
+            var $div = $(this).parents('div.caption');
+            $div.siblings('div.hidden').removeClass('hidden');
+            $div.addClass('hidden');
+        });
+        $('#reg-lock').on('click', 'button', function () {
+            if ($(this).hasClass('btn-success')) {
+                $.post('/lock/close');
+            } else {
+                $.post('/lock/open');
+            }
+            var $div = $(this).parents('div.caption');
+            $div.siblings('div.hidden').removeClass('hidden');
+            $div.addClass('hidden');
+        });
+    });
+</script>
+<div class="work-xcontent">
+	<div>
+		<div class="col-lg-12 col-xs-12">
+			<h4><span class="fa fa-hand-o-right"></span> 仪表盘</h4>
+		</div>
+        <div class="col-lg-12 col-xs-12">
+            <div class="card-box">
+                <div class="col-lg-3 col-sm-5 col-xs-6">
+                    <div class="box-min thumbnail">
+                        <div>
+                            <div>
+                                {% if now_class %}
+                                    <h4>当前课程: {{ now_class.k_name }}</h4>
+                                    <p>签到比例：{{ now_class.k_stu_num }}/{{ stu_total_num }}</p>
+                                {% else %}
+                                    <h4>当前无课</h4>
+                                    <p>&nbsp;</p>
+                                    <p>无课</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-5 col-xs-6">
+                    <div class="box-min thumbnail">
+                        <div>
+                            <div class="pull-left">
+                                <span class="fa fa-users"></span>
+                            </div>
+                            <div>
+                                <h4>学员总数</h4>
+                                <p>&nbsp;</p>
+                                <p>{{ stu_total_num }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-5 col-xs-6">
+                    <div id="work-lock" class="thumbnail" style="background-color: #176C53;">
+                        <div class="caption {% if not work_lock %}hidden{% endif %}">
+                            <h3 style="color: #ffffff;">禁止逾期提交作业</h3>
+                            <p>
+                                <button class="btn btn-danger">开启逾期提交</button>
+                            </p>
+                        </div>
+                        <div class="caption {% if work_lock %}hidden{% endif %}">
+                            <h3 style="color: #ffffff;">允许逾期提交作业</h3>
+                            <p>
+                                <button class="btn btn-success">关闭逾期提交</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-5 col-xs-6">
+                    <div id="reg-lock" class="thumbnail" style="background-color: #821D46;">
+                        <div class="caption {% if reg_lock %}hidden{% endif %}">
+                            <h3 style="color: #ffffff;">允许用户注册</h3>
+                            <p>
+                                <button class="btn btn-success">关闭用户注册</button>
+                            </p>
+                        </div>
+                        <div class="caption {% if not reg_lock %}hidden{% endif %}">
+                            <h3 style="color: #ffffff;">禁止用户注册</h3>
+                            <p>
+                                <button class="btn btn-danger">开启用户注册</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'admin/footer.html' %}

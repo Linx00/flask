@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+div.box-min { padding: 20px 25px; text-align: right; border-radius: 5px; background-repeat: no-repeat; background-size: 50px 50px; background-position: 20px 25px; color: #fff; }
+div.box-min p { margin: 0; }
+div.box-min div.pull-left > span.fa { font-size: 40px; margin: 8px 5px; }
+.card-box > div:NTH-CHILD(1) div.box-min { background-color: #712AA8; }
+.card-box > div:NTH-CHILD(2) div.box-min { background-color: #2A3F9B; }
+.card-box > div:NTH-CHILD(3) div.box-min { background-color: #176C53; }
+.card-box > div:NTH-CHILD(4) div.box-min { background-color: #821D46; }
+
+.table-list { margin-top: 30px; }

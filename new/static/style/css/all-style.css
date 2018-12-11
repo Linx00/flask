@@ -1,0 +1,88 @@
+.box {
+  position: relative;
+  background: #ffffff;
+  border-top: 2px solid #c1c1c1;
+  margin: 0 auto 15px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  max-width: 650px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.box.box-primary {
+  border-top-color: #3c8dbc;
+}
+.box.box-info {
+  border-top-color: #00c0ef;
+}
+.box.box-danger {
+  border-top-color: #f56954;
+}
+.box.box-warning {
+  border-top-color: #f39c12;
+}
+.box.box-success {
+  border-top-color: #00a65a;
+}
+.box .box-header {
+  position: relative;
+  border-radius: 3px 3px 0 0;
+  border-bottom: 0 solid #f4f4f4;
+  color: #444;
+}
+.box .box-header:before,
+.box .box-header:after {
+  display: table;
+  content: " ";
+}
+.box .box-header:after {
+  clear: both;
+}
+.box .box-header .box-title {
+    display: inline-block;
+    padding: 12px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    float: left;
+    cursor: default;
+}
+.box .box-header .box-title .fa {
+    padding-right: 10px;
+}
+.box .box-header .h-title {
+    display: inline-block;
+    padding-top: 15px;
+}
+.box .box-body {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.alert-xs {
+    margin-bottom: 15px;
+}
+.h-title {
+    font-weight: bolder;
+    font-size: 18px;
+}
+td {
+    vertical-align: middle!important;
+}
+
+/*用在record.html中*/
+.select-group {
+    margin-bottom: 10px;
+}
+.select-group span {
+    font-weight: bolder;
+    font-size: 13px;
+    color: #4cae4c;
+}
+.select-group select {
+    display: inline-block;
+    width: 82px;
+    height: 24px;
+    padding: 2px 4px;
+    font-size: 12px;
+}

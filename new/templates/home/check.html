@@ -1,0 +1,20 @@
+{% extends "home/header.html"%}
+
+{%block content %}
+<div class="container">
+    <div class="box box-danger">
+        <div class="box-header">
+            <div class="text-center">
+                <span class="h-title">在线签到</span>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="text-center form-group">
+                <button class="btn btn-danger">扫码签到</button>
+            </div>
+            {% include "home/sign.html" %}
+        </div>
+    </div>
+</div>
+
+{%endblock%}

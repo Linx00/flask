@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div id="wEditor"></div>
+<script>
+var WE = window.wangEditor;
+var weditor = new WE('#wEditor');
+// weditor.customConfig.uploadImgShowBase64 = true;
+weditor.customConfig.uploadFileName = "files";
+weditor.customConfig.uploadImgServer = '<%=request.getContextPath()%>/file/upload';
+weditor.customConfig.uploadImgMaxSize = 2 * 1024 * 1024; // 设置图片大小限制2m
+weditor.create(); // 创建
+
+weditor.customConfig.uploadImgParams = {
+    type: "${file_type}"
+}
+</script>

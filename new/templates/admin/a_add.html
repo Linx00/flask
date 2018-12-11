@@ -1,0 +1,87 @@
+{% extends 'admin/header.html' %}
+{%block content%}
+<script type="text/javascript">
+	changeTab('添加管理员');
+</script>
+
+<div class="setting-xcontent">
+	<div>
+		<div class="col-lg-12 col-xs-12">
+			<h4><span class="fa fa-hand-o-right"></span> 添加管理员</h4>
+		</div>
+		<div class="col-lg-6 col-xs-6 col-lg-offset-3 col-xs-offset-3">
+			<div class="panel panel-info bd-color-x">
+				<div class="panel-heading bg-color-x">
+					<span class="">添加管理</span>
+				</div>
+				<div class="panel-body">
+					<form id="add_from" class="form-horizontal" method="post">
+						{% for msg in get_flashed_messages(category_filter=['ok'])%}
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> 操作成功</h4>
+                            {{ msg}}
+                        </div>
+                        {%endfor%}
+						<div class="form-group">
+							<label for="name" class="text-left col-lg-3 col-sm-4 control-label">{{form.name.label}}</label>
+							<div class="col-lg-9 col-sm-8">
+								{{form.name}}
+							</div>
+							{% for err in form.name.errors%}
+                            <div class="col-md-12">
+                            <font style="color:red">{{ err }}</font>
+								</div>
+                            {%endfor%}
+						</div>
+
+                        <div class="form-group">
+							<label for="tel" class="text-left col-lg-3 col-sm-4 control-label">{{form.tel.label}}</label>
+							<div class="col-sm-8 col-lg-9">
+								{{form.tel}}
+							</div>
+							{% for err in form.tel.errors%}
+                            <div class="col-md-12">
+                            <font style="color:red">{{ err }}</font>
+								</div>
+                            {%endfor%}
+						</div>
+
+                        <div class="form-group">
+							<label for="pwd" class="text-left col-lg-3 col-sm-4 control-label">{{form.pwd.label}}</label>
+							<div class="col-sm-8 col-lg-9">
+								{{form.pwd}}
+							</div>
+							{% for err in form.pwd.errors%}
+                            <div class="col-md-12">
+                            <font style="color:red">{{ err }}</font>
+							</div>
+                            {%endfor%}
+
+						</div>
+
+						<div class="form-group">
+							<label for="repwd" class="text-left col-lg-3 col-sm-4 control-label">{{form.repwd.label}}</label>
+							<div class="col-sm-8 col-lg-9">
+								{{form.repwd}}
+							</div>
+							{% for err in form.repwd.errors%}
+                            <div class="col-md-12">
+                            <font style="color:red">{{ err }}</font>
+								</div>
+                            {%endfor%}
+						</div>
+
+						<div class="box-footer">
+                        	{{form.csrf_token}}
+                        	{{form.submit}}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include 'admin/footer.html' %}
+{%endblock%}

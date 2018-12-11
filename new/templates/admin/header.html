@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>超市内部系统后台</title>
+    <!--<link rel="stylesheet" href="../../static/style/css/bootstrap.css">-->
+    <!--<link rel="stylesheet" href="../../static/style/css/font-awesome.css">-->
+    <!--<script src="../../static/style/js/jquery.js"></script>-->
+    <!--<script src="../../static/style/js/bootstrap.js"></script>-->
+
+    <!--<link rel="stylesheet" href="../../static/style/admin/css/header.css">-->
+	<link rel="stylesheet" href="{{ url_for('static',filename='style/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style/css/font-awesome.css')}}">
+    <script src="{{ url_for('static',filename='style/js/jquery.js')}}"></script>
+    <script src="{{ url_for('static',filename='style/style/js/bootstrap.js')}}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='style/admin/css/header.css')}}">
+</head>
+<body>
+	<header class="header">
+		<div class="h-logo">
+			<span class="fa fa-navicon"></span>
+			<span>内部管理系统</span>
+		</div>
+		<div class="pull-right">
+			<a id="logout" href="javascript:;" class="btn btn-xs btn-danger">
+                <span class="fa fa-sign-out"></span> 注销
+            </a>
+		</div>
+	</header>
+
+	<aside class="side">
+		<div>
+			<a href="/admin"><img class="img-circle" src="{{ url_for('static',filename='images/logo.png')}}" width="60"></a>
+			<h5><b>欢迎: {{ name }}</b></h5>
+		</div>
+		<ul id="aside-menu">
+
+            <!--<li>-->
+				<!--<a href="/admin/plan"><span class="fa fa-book"></span>授课计划</a>-->
+			<!--</li>-->
+			<li id="menu">
+				<a href="javascript:;"><span class="fa fa-book"></span>员工管理</a>
+				<ul class="hide-opt">
+					<li><a href="{{url_for('admin.employee',page=1)}}">员工列表</a></li>
+					<li><a href="{{url_for('admin.employee_add',id=1)}}">添加员工</a></li>
+				</ul>
+			</li>
+			<li id="menu">
+				<a href="javascript:;"><span class="fa fa-book"></span>供货商管理</a>
+				<ul class="hide-opt">
+					<li><a href="{{url_for('admin.sup',page=1)}}">供货商列表</a></li>
+					<li><a href="{{url_for('admin.sup_add',id=1)}}">添加供货商</a></li>
+				</ul>
+			</li>
+            <!--<li>-->
+                <!--<a href="/admin/work"><span class="fa fa-pencil"></span>供货商管理</a> &lt;!&ndash; 学生 课程 状态 &ndash;&gt;-->
+            <!--</li>-->
+
+            <li id="menu">
+				<a href="javascript:;"><span class="fa fa-male"></span> 商品管理</a>
+				<ul class="hide-opt">
+					<li><a href="{{url_for('admin.goods',page=1)}}">商品列表</a></li>
+					<li><a href="{{url_for('admin.goods_add',id=1)}}">添加商品</a></li> <!-- 分类：学生 是否缺勤 课程 -->
+				</ul>
+			</li>
+			<li id="menu">
+				<a href="javascript:;"><span class="fa fa-male"></span> 会员管理</a>
+				<ul class="hide-opt">
+					<li><a href="{{url_for('admin.vip',page=1)}}">会员列表</a></li>
+					<li><a href="{{url_for('admin.vip_add',id=1)}}">编辑会员</a></li> <!-- 分类：学生 是否缺勤 课程 -->
+				</ul>
+			</li>
+
+
+                <li id="menu">
+                    <a href="javascript:;"><span class="fa fa-cog"></span> 系统管理</a>
+                    <ul class="hide-opt">
+                        <li><a href="{{url_for('admin.a_list',page=1)}}">管理员信息</a></li>
+                        <li><a href="{{url_for('admin.a_add',id=1)}}">添加管理员</a></li>
+                        <li><a href="{{url_for('admin.a_change')}}">修改密码</a></li>
+                    </ul>
+                </li>
+
+
+		</ul>
+	</aside>
+	<div class="content-wrapper">
+    <!--内容-->
+        {%block content%} {%endblock%}
+    <!--内容-->
+    </div>
+	<script type="text/javascript">
+		// 通过jquery实现简洁的手风琴菜单
+		$('#aside-menu #menu > a').on('click', function(event) {
+			$(this).parent('li').siblings('li#menu').children('ul').hide(300); // 隐藏其他的菜单
+			$(this).parent('li').children('ul').toggle(300); // 显示当前菜单
+		});
+		// 侧边栏显隐
+		$('.h-logo > span:first-child').click(function(event) {
+			var SW = parseInt($('.side').outerWidth());
+			if (SW > 200) {
+				$('.side').css('width', '0');
+				$('[class$="xcontent"]').css('padding-left', '5px');
+			} else {
+				$('.side').css('width', '210px');
+				$('[class$="xcontent"]').css('padding-left', '215px');
+			}
+		});
+		
+		function changeTab(text) {
+			// 通过a标签中内容改变菜单栏的激活
+			$('.side li.active').removeClass('active'); // 将其他菜单去除激活
+			$('.side li > a').each(function(index, el) {
+				if (el.innerText.indexOf(text) != -1) {
+					$(el).parent('li').addClass('active').parent('ul').removeClass('hide-opt');
+					return false;
+				}
+			});
+		}
+
+		$('#logout').on('click', function (e) {
+           $.post('/admin/logout', function (data) {
+               if (data.status) {
+                   alert('注销成功！');
+                   location.href = '/admin/login'
+               }
+           });
+        });
+	</script>
+	

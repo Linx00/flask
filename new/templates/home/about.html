@@ -1,0 +1,27 @@
+{% extends "home/header.html"%}
+
+{%block content %}
+<div class="container">
+    <div class="box box-success">
+        <div class="box-header">
+            <h4 class="box-title"><span class="fa fa-info-circle"></span>关于我们</h4>
+        </div>
+        <div class="box-body">
+            <div class="alert alert-info">
+                <ul>
+                    <li>顾客第一，唯一的第一</li>
+                    <li>我尽力，方便就在您身边</li>
+                    <li>服务创造价值</li>
+                    <li>与您携手改变生活</li>
+                    <li>真诚服务每一天</li>
+                </ul>
+                <hr>
+                <div class="text-right">
+                    一生有晴超市 <span class="fa fa-registered"> 2018</span>
+                </div>
+            </div>
+            {% include "home/sign.html" %}
+        </div>
+    </div>
+</div>
+{%endblock%}

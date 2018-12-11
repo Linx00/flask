@@ -1,0 +1,85 @@
+{% extends "home/header.html"%}
+
+{%block content %}
+<div class="container">
+    <div class="box box-warning">
+        <div class="box-header">
+            <h4 class="box-title"><span class="fa fa-plus-circle"></span>用户注册</h4>
+        </div>
+        <div class="box-body">
+            {% for msg in get_flashed_messages()%}
+            <p  style="color:green">{{msg}}</p>
+            {%endfor%}
+
+            <form  class="form-horizontal" method="post">
+                <div class="form-group">
+                    <label for="name" class="control-label col-lg-2 col-sm-2 col-xs-4">{{form.name.label}}</label>
+                    {{form.name}}
+                    {% for err in form.name.errors%}
+                    <div class="col-md-12"></div>
+                    <font style="color:red">{{ err }}</font>
+                    {%endfor%}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="email" class="control-label col-lg-2 col-sm-2 col-xs-4">{{form.email.label}}</label>
+                    {{form.email}}
+                    {% for err in form.email.errors%}
+                    <div class="col-md-12"></div>
+                    <font style="color:red">{{ err }}</font>
+                    {%endfor%}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="tel" class="control-label col-lg-2 col-sm-2 col-xs-4">{{form.tel.label}}</label>
+                    {{form.tel}}
+                    {% for err in form.tel.errors%}
+                    <div class="col-md-12"></div>
+                    <font style="color:red">{{ err }}</font>
+                    {%endfor%}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="pwd" class="control-label col-lg-2 col-sm-2 col-xs-4">{{form.pwd.label}}</label>
+                    {{form.pwd}}
+                    {% for err in form.pwd.errors%}
+                    <div class="col-md-12"></div>
+                    <font style="color:red">{{ err }}</font>
+                    {%endfor%}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="repwd" class="control-label col-lg-2 col-sm-2 col-xs-4">{{form.repwd.label}}</label>
+                    {{form.repwd}}
+                    {% for err in form.pwd.errors%}
+                     <div class="col-md-12" ></div>
+                    <font style="color:red">{{ err }}</font>
+                    {%endfor%}
+                </div>
+
+
+
+                {{form.csrf_token}}
+                {{form.submit}}
+
+                <div class="form-group">
+                    <div class="col-lg-6 col-xs-6">
+                        <a href="{{url_for('home.about')}}" class="text-success" href=""><i class="fa fa-info"></i> 关于我们</a>
+                    </div>
+                    <div class="col-lg-6 col-xs-6 text-right">
+                        <a href="{{url_for('home.login')}}" class="text-black" href="">马上登录 <span
+                                class="fa fa-sign-in"></span></a>
+                    </div>
+                </div>
+            </form>
+            {% include "home/sign.html" %}
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

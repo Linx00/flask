@@ -1,0 +1,42 @@
+{% extends "home/header.html"%}
+{%import "ui/admin_ui.html"as pg%}
+{%block content %}
+<div class="container">
+    <div class="box box-warning">
+        <div class="box-header">
+            <div class="text-center">
+                <span class="h-title">计划</span>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table table-responsive table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>生产时间</th>
+                        <th>有效期</th>
+                        <th>价格</th>
+                        <th>数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for v in page_data.items%}
+                <tr>
+                    <td>{{v.id}}</td>
+                    <td>{{v.name}}</td>
+                    <td>{{v.ontimes}}</td>
+                    <td>{{v.outtimes}}</td>
+                    <td>{{v.money}}</td>
+                    <td>{{v.num}}</td>
+
+                </tr>
+                {%endfor%}
+            </table>
+                <div class="box-footer clearfix">
+                    {{pg.page(page_data,'admin.goods')}}
+                </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title>超市内部管理系统</title>
+    <link rel="stylesheet" href="../static/style/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static',filename='style/css/bootstrap.css')}}"> -->
+    <link rel="stylesheet" href="../static/style/css/font-awesome.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static',filename='style/css/font-awesome.css')}}"> -->
+    <script src="../static/style/js/jquery.js"></script>
+    <!-- <script src="{{ url_for('static',filename='style/js/jquery.js')}}"></script> -->
+    <script src="../static/style/js/bootstrap.js"></script>
+    <!-- <script src="{{ url_for('static',filename='style/js/bootstrap.js')}}"></script> -->
+    <link rel="stylesheet" href="../static/style/css/header.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static',filename='style/css/header.css')}}"> -->
+    <link rel="stylesheet" href="../static/style/css/all-style.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static',filename='style/css/all-style.css')}}"> -->
+</head>
+<body class="skin-blue">
+    <header>
+        <a class="logo">超市商品展示</a>
+        <div class="header-nav">
+            {% if username %}
+                <span class="label label-xs label-info">欢迎: <strong>{{ username }}</strong></span>
+            {% endif %}
+            <div class="dropdown pull-right">
+                <button class="btn btn-xs btn-warning dropdown-toggle" data-toggle="dropdown">
+                    <span class="fa fa-gear"></span>菜单
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="{{url_for('home.login')}}"><span class="fa fa-user"></span>&nbsp;&nbsp;登录</a></li>
+                    <li><a href="{{url_for('home.get_back')}}"><span class="fa fa-key"></span>&nbsp;修改密码</a></li>
+                    <li><a href="{{url_for('home.login')}}"><span class="fa fa-sign-out"></span>&nbsp;注销</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <nav class="body-nav">
+        <div class="btns">
+            {% if username %}
+                <a href="{{url_for('admin.plan')}}" class="btn btn-primary">主页 <span class="fa fa-home"></span></a>
+                <a href="{{url_for('home.class')}}" class="btn btn-warning">课程 <span class="fa fa-book"></span></a>
+                <a href="{{url_for('home.recond')}}" class="btn btn-success">记录 <span class="fa fa-file-text"></span></a>
+                <a href="{{url_for('home.check')}}" class="btn btn-danger">签到 <span class="fa fa-camera"></span></a>
+            {% else %}
+                <a href="{{url_for('home.login')}}" class="btn btn-primary">登录 <span class="fa fa-sign-in"></span></a>
+                <a href="{{url_for('home.register')}}" class="btn btn-warning">注册 <span class="fa fa-plus-circle"></span></a>
+                <a href="{{url_for('home.about')}}" class="btn btn-success">关于 <span class="fa fa-info-circle"></span></a>
+            {% endif %}
+        </div>
+    </nav>
+<div class="container" style="margin-top:76px">
+    {% block content %}{% endblock %}
+</div>
